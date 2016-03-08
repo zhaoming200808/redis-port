@@ -6,6 +6,7 @@ godep-env:
 
 redis-port: godep-env
 	godep go build -i -o bin/redis-port ./cmd
+	./bin/redis-port stat -i /usr/local/var/db/redis/dump.rdb -o ./stat.json # 2>/dev/null | jq .
 
 clean:
 	rm -rf bin

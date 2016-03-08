@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/docopt/docopt-go"
 	"github.com/CodisLabs/redis-port/pkg/libs/bytesize"
 	"github.com/CodisLabs/redis-port/pkg/libs/errors"
 	"github.com/CodisLabs/redis-port/pkg/libs/log"
+	"github.com/docopt/docopt-go"
 )
 
 var args struct {
@@ -62,6 +62,7 @@ func main() {
 	usage := `
 Usage:
 	redis-port decode   [--ncpu=N]  [--parallel=M]  [--input=INPUT]  [--output=OUTPUT]
+	redis-port stat	    [--ncpu=N]  [--parallel=M]  [--input=INPUT]  [--output=OUTPUT]
 	redis-port restore  [--ncpu=N]  [--parallel=M]  [--input=INPUT]   --target=TARGET   [--auth=AUTH]  [--extra] [--faketime=FAKETIME]  [--filterdb=DB]
 	redis-port dump     [--ncpu=N]  [--parallel=M]   --from=MASTER   [--password=PASSWORD]  [--output=OUTPUT]  [--extra]
 	redis-port sync     [--ncpu=N]  [--parallel=M]   --from=MASTER   [--password=PASSWORD]   --target=TARGET   [--auth=AUTH]  [--sockfile=FILE [--filesize=SIZE]] [--filterdb=DB] [--psync]
@@ -183,5 +184,7 @@ Options:
 		new(cmdDump).Main()
 	case d["sync"].(bool):
 		new(cmdSync).Main()
+	case d["stat"].(bool):
+		new(cmdStat).Main()
 	}
 }
