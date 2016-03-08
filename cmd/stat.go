@@ -162,7 +162,7 @@ func (cmd *cmdStat) decoderMain(ipipe <-chan *rdb.BinEntry, opipe chan<- string)
 				Type:       "string",
 				ExpireAt:   e.ExpireAt,
 				Key:        toText(e.Key),
-				FieldCount: len(obj),
+				FieldCount: 1,
 				KeySize:    len(e.Key),
 				ValueSize:  len(e.Value),
 			}
